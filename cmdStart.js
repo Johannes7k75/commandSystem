@@ -6,6 +6,7 @@ if (event.action) {
         let context = JsMacros.runScript("./all_Macros/commandSystem/index.js").getCtx()
         GlobalVars.putObject("CHAT_CMD_CONTEXT", context)
         log('§eChatCmds §fhas been §aenabled§w!')
+        // log(context.getMainThread())
     } else {
         GlobalVars.putInt("CHAT_CMD_TOGGLE", 0);
         GlobalVars.getObject("CHAT_CMD_CONTEXT").closeContext()
