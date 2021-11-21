@@ -1,5 +1,6 @@
 module.exports = {
-    name: "goal",
+    name: 'goal',
+    description: 'Sets a goal',
 
     execute(client, msg, args) {
         let x, y, z;
@@ -8,8 +9,8 @@ module.exports = {
         Hud.registerDraw3D(overlay)
 
         if (!args[0]) {
-            x = Player.getPlayer().getX()
-            z = Player.getPlayer().getZ()
+            x = parseInt(Player.getPlayer().getX())
+            z = parseInt(Player.getPlayer().getZ())
             overlay.addBox(x, 0, z, x + 1, 256, z + 1, parseInt("17a05d", 16), 100, parseInt("17a05d", 16), 100, true)
         }
         if (args.length === 2) {

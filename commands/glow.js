@@ -1,5 +1,6 @@
 module.exports = {
     name: "glow",
+    description: "Glow the specified player",
 
     execute(client, msg, args) {
         let { log } = require('../utils/log')

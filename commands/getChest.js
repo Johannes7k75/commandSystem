@@ -1,18 +1,27 @@
-Hud.clearDraw3Ds()
-overlay = Hud.createDraw3D()
-Hud.registerDraw3D(overlay)
+module.exports = {
+    name: 'getchest',
+    description: 'Get the chest arround of your player',
 
-const nextChest = require('../utils/getNextChest')
-let { x, y, z } = Player.getPlayer().getPos()
-x = parseInt(x); y = parseInt(y); z = parseInt(z)
+    execute(client, msg, args) {
+        Hud.clearDraw3Ds()
+        overlay = Hud.createDraw3D()
+        Hud.registerDraw3D(overlay)
 
-for (xi = -5; xi < 5; xi++) {
-    for (yi = -5; yi < 5; yi++) {
-        for (zi = -5; zi < 5; zi++) {
-            if (World.getBlock(x + xi, y + yi, z + zi).getId() === ('minecraft:chest' || 'minecraft:hopper' || 'minecraft:barrel')) {
-                Player.getPlayer().interactBlock(x + xi, y + yi, z + zi, 0, false)
-                Client.waitTick()
+        let { x, y, z } = Player.getPlayer().getPos()
+        x = parseInt(x); y = parseInt(y); z = parseInt(z)
+
+        for (xi = -5; xi < 5; xi++) {
+            for (yi = -5; yi < 5; yi++) {
+                for (zi = -5; zi < 5; zi++) {
+                    blockId = World.getBlock(x + xi, y + yi, z + zi).getId()
+                    if (blockId === 'minecraft:chest' || blockId === 'minecraft:hopper' || blockId === 'minecraft:barrel' || blockId === 'minecraft:shulker_box') {
+                        Player.getPlayer().interactBlock(x + xi, y + yi, z + zi, 0, false)
+                        Client.waitTick()
+                    }
+                }
             }
         }
+
+        KeyBind.key("key.esc", true)
     }
 }

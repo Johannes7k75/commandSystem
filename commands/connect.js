@@ -1,8 +1,9 @@
 module.exports = {
-    name: "connect",
-
+    name: 'connect',
+    description: 'Connects to a server',
     execute(client, msg, args) {
-        if (!args[0]) return Chat.log('No address given')
-        Client.connect(args[0])
+        if (!args[0]) { Chat.log('No address given') }
+        if (args[0]) { Client.connect(args[0]) }
     }
 }
+

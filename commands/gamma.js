@@ -1,8 +1,11 @@
 module.exports = {
-    name: "gamma",
+    name: 'gamma',
+    description: 'sets your gamma value',
 
     execute(client, msg, args) {
-        Chat.log(Client.getGameOptions().getGamma())
-        Client.getGameOptions().setGamma(10000.0)
+        let { log } = require('../utils/log')
+
+        if (!args[0]) { log(Client.getGameOptions().getGamma()) }
+        if (!isNaN(args[0])) { Client.getGameOptions().setGamma(parseInt(args[0])); log('set gamma to ' + Client.getGameOptions().getGamma()) }
     }
 }

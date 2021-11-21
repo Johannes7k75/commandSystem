@@ -13,13 +13,9 @@ module.exports = (client, msg) => {
 
     // GlobalVars.getInt(VAR)
     // GlobalVars.putInt(VAR, VALUE)
-
     if (command) {
-        GlobalVars.putString("MESSAGE", content)
-        GlobalVars.putString("MESSAGE_ARGS", JSON.stringify(args))
-        // Chat.log('./all_Macros/commandSystem/' + command.path.replace('./', ''))
-        // command.execute(client, content, args)
-        JsMacros.runScript('./all_Macros/commandSystem/' + command.path.replace('./', ''))
+        comamndFromLoad = load(`commands/${cmd}.js`)
+        JsMacros.runScript(`./all_macros/commandSystem/commands/${cmd}.js`, JavaWrapper.methodToJava(comamndFromLoad.execute.bind(null, client, content, args)))
         Client.getMinecraft().field_1705.method_1743().method_1803(GlobalVars.getString("MESSAGE"))
     }
 
